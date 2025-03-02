@@ -5,19 +5,13 @@ include('db_connection.php');
 
 function guardar_tarjeta($tarjeta, $conn) {
     // Preparamos la consulta SQL para insertar los datos
-    $stmt = $conn->prepare("INSERT INTO tarjetas (numero, expiracion, cvv) VALUES (?, ?, ?)");
+    $query = "INSERT INTO tarjetas (numero, expiracion, cvv) VALUES ($1, $2, $3)";
     
-    if ($stmt === false) {
-        die('Error en la preparación de la consulta: ' . $conn->error);
+    // Ejecutamos la consulta con los valores
+    $result = pg_query_params($conn, $query, array($tarjeta['numero'], $tarjeta['expiracion'], $tarjeta['cvv']));
+    
+    if (!$result) {
+        die('Error al guardar la tarjeta: ' . pg_last_error($conn));
     }
-
-    // Vinculamos los parámetros con la consulta preparada
-    $stmt->bind_param("sss", $tarjeta['numero'], $tarjeta['expiracion'], $tarjeta['cvv']);
-    
-    // Ejecutamos la consulta
-    $stmt->execute();
-    
-    // Cerramos la declaración
-    $stmt->close();
 }
 ?>

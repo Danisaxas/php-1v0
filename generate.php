@@ -1,16 +1,16 @@
 // generate.php
 <?php
-// Incluir los archivos necesarios para la conexión y las funciones
-include('cards_db.php');  // Incluye la función guardar_tarjeta() de cards_db.php
+// Incluir los archivos necesarios
+include('cards_db.php');
 
-// Datos de la tarjeta a generar (estos pueden ser dinámicos o recibidos desde un formulario)
+// Datos de la tarjeta a generar (puedes modificar estos valores o recibirlos desde un formulario)
 $tarjeta = [
-    'numero' => '1234567890123456',  // Número de tarjeta (puedes generar uno aleatorio o recibirlo por formulario)
-    'expiracion' => '12/23',  // Fecha de expiración (también puede ser dinámica)
-    'cvv' => '123'  // CVV de la tarjeta (esto también puede ser dinámico)
+    'numero' => '1234567890123456', // Número de tarjeta
+    'expiracion' => '12/23', // Fecha de expiración
+    'cvv' => '123' // CVV
 ];
 
-// Llamamos a la función para guardar la tarjeta en la base de datos
+// Llamamos a la función para guardar la tarjeta
 guardar_tarjeta($tarjeta, $conn);
 
 // Mensaje de éxito
