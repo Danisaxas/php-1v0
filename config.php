@@ -1,15 +1,16 @@
 <?php
-// Configuración de la base de datos
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'tarjetas_fake');
+$servername = "localhost";
+$username = "root"; // Usualmente es "root" en XAMPP
+$password = ""; // Si no has establecido una contraseña, déjalo vacío
+$dbname = "tarjetas_fake";
 
-// Conectar a la base de datos
-$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Comprobar la conexión
-if($conn === false){
-    die("ERROR: No se pudo conectar. " . $conn->connect_error);
+// Comprobar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
+
+echo "Conexión exitosa!";
 ?>
