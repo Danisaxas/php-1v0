@@ -1,17 +1,3 @@
-<?php
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST['username'] == 'admin' && $_POST['password'] == 'admin123') {
-        $_SESSION['admin'] = true;
-        header("Location: panel.php");
-        exit();
-    } else {
-        $error = "Credenciales incorrectas";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,16 +6,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Iniciar sesión</title>
 </head>
 <body>
-    <form method="POST">
+    <h1>Iniciar sesión</h1>
+    <form action="login_process.php" method="POST">
         <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
+        <input type="text" name="username" required><br>
+
         <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="password" name="password" required><br>
 
         <button type="submit">Iniciar sesión</button>
     </form>
-
-    <?php if (isset($error)) { echo "<p>$error</p>"; } ?>
 </body>
 </html>
